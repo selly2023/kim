@@ -1,3 +1,5 @@
+
+
 https://www.npmjs.com/
 
 
@@ -18,12 +20,11 @@ vue 단축키:
   vuex      : vuex 코드 생성. .vue 에서 사용.
 
 
-실행중인 서버 중지 : ctrl + c
-
 변수 ==> data     <== v-?? , {{}} , :
 함수 ==> methods  <== v-on , @
 
-메서드 매개변수 확인하는 방법: ctrl + shift + spacebar
+메서드 매개변수 확인하는 방법:
+  ctrl + shift + spacebar
 
 지시자는 상태(데이터,변수)를 화면에 붙일 때 사용한다.(바인딩)
   {{}}   : 변수. 값을 화면에 바인딩
