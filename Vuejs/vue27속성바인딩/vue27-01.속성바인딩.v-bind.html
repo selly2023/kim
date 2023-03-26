@@ -63,15 +63,15 @@
       </p>
       <pre><b>클릭하면 value 속성 값으로  <i>v-bind 지시자</i>  가 나오게 만드시오</b></pre>
       <p>
-        <button click="clickBindValue">클릭</button>
+        <button v-on:click="clickBindValue">클릭</button>
         <input id="a"
           type="text"
-          value="message">
+          v-bind:value="message">
       </p>
       <pre><b>클릭하면 src 속성 값에  <i>../images/heart.png</i>  가 나오게 만드시오</b></pre>
       <p>
-        <button click="clickBindSrc">클릭</button>
-        <img src="imagePath" />
+        <button v-on:click="clickBindSrc">클릭</button>
+        <img v-bind:src="imagePath" />
       </p>
     </div>
 
@@ -90,6 +90,8 @@
       idA: null,
       classA: null,
       styleA: null,
+      message: null,
+      imagePath: null,
     },
     methods: {
       /* 이벤트 핸들러 등록 + 일반 함수 */
@@ -110,6 +112,14 @@
           fontSize: '20pt',
         }
         this.$data.styleA = style;
+      },
+      clickBindValue(e) {
+        console.log(e.target);
+        this.$data.message = 'v-bind 지시자;'
+      },
+      clickBindSrc(e) {
+        console.log(e.target);
+        this.$data.imagePath = '../images/heart.png';
       }
     },
   });
