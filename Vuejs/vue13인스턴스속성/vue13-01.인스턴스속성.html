@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <!-- CSS import -->
-    <link rel="stylesheet"
-      href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css">
 
-  </head>
+</head>
 
-  <body>
+<body>
     <pre>
 
         Vue 인스턴스 속성을 학습한다.
@@ -57,88 +54,66 @@
         <hr>
     </pre>
     <div>
-      <table>
-        <colgroup>
-          <col width="150px">
-          <col width="*">
-        </colgroup>
-        <thead>
-          <tr>
-            <th>속성</th>
-            <th>설명</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>el 속성</td>
-            <td>
-              element의 약자<br>
-            </td>
-          </tr>
-          <tr>
-            <td>data 속성</td>
-            <td>반응형 속성이다. 값이 바뀌면 자동으로 화면에 변경 사항이 반영된다. ==> 뷰 반응성</td>
-          </tr>
-          <tr>
-            <td>template 속성</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>methods 속성</td>
-            <td>
-              이벤트나 화면 동작을 정의하는 영역. <br>
-              수동 수행 ==> 호출할 때마다 로직이 수행. 사용자 행위시. 버튼 클릭<br>
-              <br>
-              &#187; 페이지 109 참고<br>
-            </td>
-          </tr>
-          <tr>
-            <td>computed 속성</td>
-            <td>
-              data 속성의 데이터 연산을 정의하는 영역<br>
-              자동 수행 ==> data 속성 값이 변경될 때 로직이 수행<br>
-              <br>
-              첫번째. data 속성 값의 변화에 따라 자동으로 수행.<br>
-              두번째. 캐싱. 연산의 결과 값을 미리 저장하고 있다가 필요할 때 불러옴.<br>
-              <br>
-              &#187; 페이지 109 참고<br>
-            </td>
-          </tr>
-          <tr>
-            <td>components 속성</td>
-            <td>
-              지역 컴포넌트를 지정할 때 사용.
-            </td>
-          </tr>
-          <tr>
-            <td>watch 속성</td>
-            <td>data 속성의 변경 여부를 추척한다</td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+            <colgroup>
+                <col width="150px">
+                <col width="*">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>속성</th>
+                    <th>설명</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>el 속성</td>
+                    <td>
+                        element의 약자<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>data 속성</td>
+                    <td>반응형 속성이다. 값이 바뀌면 자동으로 화면에 변경 사항이 반영된다. ==> 뷰 반응성</td>
+                </tr>
+                <tr>
+                    <td>template 속성</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>methods 속성</td>
+                    <td>
+                        이벤트나 화면 동작을 정의하는 영역. <br>
+                        수동 수행 ==> 호출할 때마다 로직이 수행. 사용자 행위시. 버튼 클릭<br>
+                        <br>
+                        &#187; 페이지 109 참고<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>computed 속성</td>
+                    <td>
+                        data 속성의 데이터 연산을 정의하는 영역<br>
+                        자동 수행 ==> data 속성 값이 변경될 때 로직이 수행<br>
+                        <br>
+                        첫번째. data 속성 값의 변화에 따라 자동으로 수행.<br>
+                        두번째. 캐싱. 연산의 결과 값을 미리 저장하고 있다가 필요할 때 불러옴.<br>
+                        <br>
+                        &#187; 페이지 109 참고<br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>components 속성</td>
+                    <td>
+                        지역 컴포넌트를 지정할 때 사용.
+                    </td>
+                </tr>
+                <tr>
+                    <td>watch 속성</td>
+                    <td>data 속성의 변경 여부를 추척한다</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </body>
+</body>
 
 </html>
-
-
-<!-- vue 플러그인 임포트   -->
-<script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
-<script src="https://unpkg.com/vuex@3.6.2/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
-<script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
-<script>
-  new Vue({
-    /* edtmc^2w */
-    el: 'div#app',
-    data: {
-      /* 인스턴스 안에서 사용되는 변수 등록, 공유 변수 */
-      message: '실습 완성 축하!!!!',
-    },
-
-
-  });
-
-
-</script>

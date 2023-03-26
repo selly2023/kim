@@ -39,4 +39,4 @@ console.log(type1, color1, model1);
 
 // ES2015 를 사용하여 빼내기
 const { type, color, model, gear } = car;
-console.log(type, color, model, gear); // t, s, 2023,
+console.log(type, color, model, gear); // t, s, 2023, 

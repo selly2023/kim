@@ -34,7 +34,7 @@
             즉, this.$data.arr[0]=100; 과 같이 바꾸면 값은 바뀌지만 화면에 rendering 되지 않는 문제 발생.
 
         어떻게 data 속성의 값을 바꾸어야 하나?
-            data 속성의 값을 변경하려면 반드시 복제 후 재할당으로 처리해야 한다.
+            data 속성의 값을 변경하려면 반드시 복제 후 재할당 으로 처리해야 한다.
 
         자바스크립트 타입
             # value 타입에는 string, number, boolen, ...
@@ -113,8 +113,6 @@
 
 </html>
 
-
-
 <!-- vue 플러그인 임포트   -->
 <script src="https://unpkg.com/vue@2.7.8/dist/vue.js">/* vue 플러그인 임포트 */</script>
 <script>
@@ -129,18 +127,17 @@
       /* 이벤트 핸들러 등록 + 일반 함수 */
       change1(e) {
         console.log(e.target);
-        // this.$data.
+        // this.$data.arr[0] = 100; // [100, 2, 3, 4, 5]
         this.$data.arr.splice(0, 1, 100);
-        console.log(this.$data.arr);
-        debugger;
+        console.log(this.$data.arr); // [100, 2, 3, 4, 5]
       },
       change2(e) {
         console.log(e.target);
-        this.$data.arr.splice(1, 1, 300);
-
+        this.$data.arr.splice(1, 1, 300);// [100, 300, 3, 4, 5]
       },
       change3(e) {
         console.log(e.target);
+        // 배열 복제
         const newarr = this.$data.arr.filter((value, index, array) => {
           debugger;
           if (index >= 2)
@@ -148,15 +145,17 @@
           else
             return false;
         });
+        // (재)할당
         debugger;
         this.$data.arr = newarr;
-
       },
       change4(e) {
         console.log(e.target);
-
+        // 배열  복제
+        // const newarr = [].push(500).push(...this.$data.arr).push(70);
         const newarr = [500, ...this.$data.arr, 70];
 
+        // (재)할당
         this.$data.arr = newarr;
       },
     },
