@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .main {
   border: 1px solid black;
   background-color: aqua;
