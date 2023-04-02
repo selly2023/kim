@@ -5,7 +5,6 @@ ul {
   margin-top: 0;
   text-align: left;
 }
-
 li {
   display: flex;
   min-height: 50px;
@@ -16,29 +15,24 @@ li {
   background: white;
   border-radius: 5px;
 }
-
 li.checked {
   background: #bbb;
   color: #fff;
   text-decoration: line-through;
 }
-
 .checkBtn {
   line-height: 45px;
   color: #62acde;
   margin-right: 5px;
 }
-
 .removeBtn {
   margin-left: auto;
   color: #de4343;
 }
-
 .list-enter-active,
 .list-leave-active {
   transition: all 1s;
 }
-
 .list-enter,
 .list-leave-to {
   opacity: 0;
@@ -53,11 +47,15 @@ li.checked {
         v-for="todoItem in todoItems"
         v-bind:key="todoItem.id"
         v-bind:class="checked(todoItem.done)"
-        v-on:click="doneToggle(todoItem)"
+        v-on:click="(e) => doneToggle(e, todoItem)"
       >
         <i aria-hidden="true" class="checkBtn fas fa-check"></i>
         {{ todoItem.todo }}
-        <span type="button" class="removeBtn" v-on:click="removeTodo(todoItem)">
+        <span
+          type="button"
+          class="removeBtn"
+          v-on:click="(e) => removeTodo(e, todoItem)"
+        >
           <i aria-hidden="true" class="far fa-trash-alt"></i>
         </span>
       </li>
@@ -68,7 +66,6 @@ li.checked {
 <script>
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
 // import { mapActions, mapMutations, mapState, mapGetters } from 'vuex';
-
 export default {
   /* pdtmc^2w */
   props: ['todoItems'],
@@ -84,17 +81,23 @@ export default {
     checked(done) {
       return done === true ? 'checked' : null;
     },
-    removeTodo(todoItem) {
+    removeTodo(e, todoItem) {
       debugger;
       console.log(todoItem);
       // 부모 컴포넌트에게 removeTodo 이벤트 발생시킨다.
       this.$emit('removeTodo', todoItem);
+      // 이벤트 취소:
+      e.stopPropagation();
+      e.preventDefault();
     },
-    doneToggle(todoItem) {
+    doneToggle(e, todoItem) {
       debugger;
       console.log(todoItem);
       // 부모 컴포넌트에게 doneToggle 이벤트 발생시킨다.
       this.$emit('doneToggle', todoItem);
+      // 이벤트 취소:
+      e.stopPropagation();
+      e.preventDefault();
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.
