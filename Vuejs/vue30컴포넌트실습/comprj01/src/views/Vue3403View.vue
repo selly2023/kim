@@ -20,9 +20,9 @@ export default {
   },
   methods: {
     /* 이벤트 핸들러 등록 + 일반 함수 */
-    printText(e) {
-      console.log(e.target);
+    printText(parma1, param2) {
       debugger;
+      console.log(parma1, param2);
     },
   },
   components: {
