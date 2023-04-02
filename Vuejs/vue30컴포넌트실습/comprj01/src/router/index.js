@@ -27,6 +27,26 @@ const routes = [
     name: '3403',
     component: () => import('../views/Vue3403View.vue'),
   },
+  {
+    path: '/34ex',
+    name: '34ex',
+    component: () => import('../views/Vue34exView.vue'),
+  },
+  {
+    path: '/3501',
+    name: '3501',
+    component: () => import('../views/Vue3501View.vue'),
+  },
+  {
+    path: '/3701',
+    name: '3701',
+    component: () => import('../views/Vue3701View.vue'),
+  },
+  {
+    path: '/4301',
+    name: '4301',
+    component: () => import('../views/Page4301View.vue'),
+  },
 ];
 
 const router = createRouter({

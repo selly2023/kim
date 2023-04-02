@@ -20,9 +20,11 @@ export default {
   },
   methods: {
     /* 이벤트 핸들러 등록 + 일반 함수 */
-    printText(parma1, param2) {
+    printText(param1, param2) {
       debugger;
-      console.log(parma1, param2);
+      console.log(param1, param2);
+
+      this.$data.mesg = `${param1}, ${param2}`;
     },
   },
   components: {
