@@ -1,13 +1,8 @@
 <style scoped></style>
 
-    <template>
-  <div class="component-child">
-    Child counter : {{ num }} <br />
-    <button name="child" v-on:click="addCounter">+</button>
-    <button name="child" v-on:click="subCounter">-</button>
-  </div>
+<template>
+  <div>Vue4301Comp</div>
 </template>
-
 
 <script>
 // vuex 라이브러리에서 mapActions, mapMutations, mapState, mapGetters 함를 가져옵니다.
@@ -32,6 +27,8 @@ export default {
       2) store.모듈명.actions 이름 그대로 사용하기
          ...mapActions('모듈명', ['액션명1', '액션명2']),
       */
+
+      
   },
   components: {
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */

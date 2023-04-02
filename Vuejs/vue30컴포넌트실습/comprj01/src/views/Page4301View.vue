@@ -1,32 +1,7 @@
-<style scoped>
-.component-parent {
-  width: 50%;
-  background-color: lightblue;
-  padding: 5%;
-}
-
-.component-child {
-  width: 80%;
-  background-color: lightgray;
-  padding: 5% 5% 10% 0;
-}
-</style>
+<style scoped></style>
 
 <template>
-  <div id="app" class="component-parent">
-    Parent counter : {{ counter }} <br />
-    <button name="parent" v-on:click="addCounter(+10)">+</button>
-    <button name="parent" v-on:click="subCounter(-10)">-</button>
-    <p></p>
-
-    <!-- Child 컴포넌트를 등록하고 counter 데이터 속성을 props로 전달한다. -->
-    <component-child
-      v-bind:num="counter"
-      v-on:addCounter="addCounter"
-      v-on:subCounter="subCounter"
-    >
-    </component-child>
-  </div>
+  <div>Page4301View</div>
 </template>
 
 <script>
@@ -52,14 +27,6 @@ export default {
       2) store.모듈명.actions 이름 그대로 사용하기
          ...mapActions('모듈명', ['액션명1', '액션명2']),
       */
-
-    addCounter(param) {
-      console.log(param);
-      this.$data.counte = 
-    }
-        subCounter(param) {
-      console.log(param);
-    }
   },
   components: {
     /* 전역 컴포넌트인 경우는 등록하지 않는다. 전역 컴포넌트는 프로토타입 체인으로 찾을 수 있기 때문에 */
