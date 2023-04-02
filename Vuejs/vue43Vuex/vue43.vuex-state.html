@@ -169,6 +169,9 @@
         $ mkdir -p ./src/store/modules
 
     작업2-2. store 파일 생성
+        modules 를 만드는 기준은 기능별로 만들면 좋다.
+        로그인 기능, 게시판 기능, ...
+
         $ touch ./src/store/index.js   # 있을 수도 있음.
         $ touch ./src/store/modules/counterStore.js
 
@@ -218,7 +221,7 @@
         export default store;
 
 
-    작업2-4. 작성 모듈 등록
+    작업2-4. 작성한 모듈 등록
         // 파일 위치: /src/store/index.js
 
         import { createStore } from 'vuex';
@@ -303,6 +306,7 @@
                 return state.counter;
             },
         },
+
     3-3. Vue4301Comp 컴포넌트의 computed 에서
         this.$store.counterStore.getters 값을 가져오도록 작성
         computed: {
