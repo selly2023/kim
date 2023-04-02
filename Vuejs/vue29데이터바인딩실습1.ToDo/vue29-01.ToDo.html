@@ -388,7 +388,7 @@
         // // 복제 후 할당 ==> map 사용
         // // 1. 배열복제
         // // 2. 할당
-        const newitems = this.$data.todoItems.map((value, index, array) => {
+        const newitems = this.$data.todoItems.map((value) => {
           if (value.id === id) {
             // 토글 기능 완성하기
             // done true 이면 false 로
@@ -406,7 +406,7 @@
         // //    ===> filter 메서드 사용하여 삭제 기능 완성하시오
         // // 1. 배열복제
         // // 2. 할당
-        const newitems = this.$data.todoItems.filter((value, index, array) => {
+        const newitems = this.$data.todoItems.filter((value) => {
           if (value.id === id) { // 삭제
             return false;
           }

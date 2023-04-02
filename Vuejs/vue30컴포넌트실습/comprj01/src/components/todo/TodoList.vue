@@ -52,12 +52,12 @@ li.checked {
       <li
         v-for="todoItem in todoItems"
         v-bind:key="todoItem.id"
-        v-bind:class="checked"
-        v-on:click="doneToggle"
+        v-bind:class="checked(todoItem.done)"
+        v-on:click="doneToggle(todoItem)"
       >
         <i aria-hidden="true" class="checkBtn fas fa-check"></i>
         {{ todoItem.todo }}
-        <span type="button" class="removeBtn" v-on:click="removeTodo">
+        <span type="button" class="removeBtn" v-on:click="removeTodo(todoItem)">
           <i aria-hidden="true" class="far fa-trash-alt"></i>
         </span>
       </li>
@@ -75,23 +75,26 @@ export default {
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
     return {
-      checked: null,
+      // checked: 'checked',
     };
   },
   //template: ``,
   methods: {
     /* 이벤트 핸들러 등록 + 일반 함수 */
-    removeTodo(e) {
-      debugger;
-      console.log(e.target);
-      // 부모 컴포넌트에게 removeTodo 이벤트 발생시킨다.
-      this.$emit('removeTodo', e);
+    checked(done) {
+      return done === true ? 'checked' : null;
     },
-    doneToggle(e) {
+    removeTodo(todoItem) {
       debugger;
-      console.log(e.target);
+      console.log(todoItem);
+      // 부모 컴포넌트에게 removeTodo 이벤트 발생시킨다.
+      this.$emit('removeTodo', todoItem);
+    },
+    doneToggle(todoItem) {
+      debugger;
+      console.log(todoItem);
       // 부모 컴포넌트에게 doneToggle 이벤트 발생시킨다.
-      this.$emit('doneToggle', e);
+      this.$emit('doneToggle', todoItem);
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.

@@ -58,18 +58,42 @@ export default {
     clearAll(e) {
       debugger;
       console.log(e.target);
+      // todoItems = [];
+      this.$data.todoItems = [];
     },
     addTodo(e) {
       debugger;
-      console.log(e.target);
-    },
-    removeTodo(e) {
-      debugger;
-      console.log(e.target);
+      console.log(e);
     },
     doneToggle(e) {
       debugger;
-      console.log(e.target);
+      console.log(e);
+      // e === todoItem
+      // 복제후 할당
+      const newitems = this.$data.todoItems.map((value) => {
+        if (value.id === e.id) {
+          // 토글 기능 완성하기
+          // done true 이면 false 로
+          // done false 이면 true 로
+          value.done = !value.done;
+        }
+        return value;
+      });
+      this.$data.todoItems = newitems;
+    },
+    removeTodo(e) {
+      debugger;
+      console.log(e);
+      // e === todoItem
+      // 복제후 할당
+      const newitems = this.$data.todoItems.filter((value) => {
+        if (value.id === e.id) {
+          // 삭제
+          return false;
+        }
+        return true; // 포함
+      });
+      this.$data.todoItems = newitems;
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.
