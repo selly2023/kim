@@ -88,7 +88,6 @@
 
     <xmp>
     Vue-CLI 을 사용하여 ToDo 어플리케이션을 만들어 본다.
-    * 페이지 129~174를 참고
     * vue29-01.ToDo.html 예제 참조
 
     "vue30컴포넌트실습" 폴더의 comprj01 프로젝트에 아래 기능을 추가한다.
@@ -315,12 +314,12 @@
               export default {
                 // ... 중략
                 methods{
-                  clearAll(){
-                    // ... 중략
-                  },
+                clearAll(){
+                  // ... 중략
                 },
-                components: {
-                  TodoHeader: TodoHeader,
+              },
+              components: {
+                TodoHeader: TodoHeader,
                   TodoFooter: TodoFooter,
                 }
             }
@@ -499,7 +498,7 @@
             }
           };
         </script>
-        
+
 
 
         step 9-1-2. src/views/TodoView.vue  에 추가
@@ -573,7 +572,7 @@
             }
           };
         </script>
-        
+
         step 9-2-2. src/views/TodoView.vue  에 doneToggle 기능 완성
         < script>
           import TodoHeader from "@/components/todo/TodoHeader.vue";
@@ -629,11 +628,11 @@
         </script>
 
         step 9-3-1. src/components/todo/TodoList.vue   에 추가
-                
+
         // click 이벤트 버블링 막기==> 이벤트 취소
         // 1. window.event.stopPropagation() 호출하기
         // 2. 템플릿에 .stop 수식자 추가
-        
+
         < script>
           export default {
             /* pdtmc^2w */
@@ -651,7 +650,7 @@
               },
               removeTodo(id) {
                 this.$emit("removeTodo", id);
-                
+
                 // click 이벤트 버블링 막기==> 이벤트 취소
                 // 1. window.event.stopPropagation() 호출하기
                 // 2. 템플릿에 .stop 수식자 추가
@@ -661,7 +660,7 @@
             }
           };
         </script>
-        
+
         step 9-3-2. src/views/TodoView.vue  에 doneToggle 기능 완성
         < script>
           import TodoHeader from "@/components/todo/TodoHeader.vue";
@@ -741,7 +740,7 @@
               빈 문자열이 아니고
               공백이 아니고
           2-2. TodoInput 컴포넌트의 input 태그에 값을 초기화
-          
+
         < script>
           export default {
             /* pdtmc^2w */

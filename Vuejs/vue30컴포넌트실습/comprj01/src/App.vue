@@ -8,7 +8,8 @@
     <router-link to="/34ex">34ex</router-link> |
     <router-link to="/3501">3501</router-link> |
     <router-link to="/3701">3701</router-link> |
-    <router-link to="/4301">4301</router-link>
+    <router-link to="/4301">4301</router-link> |
+    <router-link to="/todo">Todo</router-link>
   </nav>
   <router-view />
 </template>
