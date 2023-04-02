@@ -1,4 +1,18 @@
-<style scoped></style>
+<style scoped>
+.clearAllContainer {
+  width: 8.5rem;
+  height: 50px;
+  line-height: 50px;
+  background-color: lightgray;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.clearAllBtn {
+  color: #e20303;
+  display: block;
+}
+</style>
 
 <template>
   <div class="clearAllContainer">
@@ -25,6 +39,7 @@ export default {
       console.log(e.target);
 
       // 부모 컴포넌트에게 clearAll 이벤트 발생시킨다.
+      this.$emit('clearAll', e);
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.

@@ -111,7 +111,7 @@ input:focus {
   <div class="inputBox shadow">
     <input type="text" placeholder="Type what you have to do" />
     <span class="addContainer">
-      <i aria-hidden="true" class="addBtn fas fa-plus"></i>
+      <i aria-hidden="true" class="addBtn fas fa-plus" v-on:click="addTodo"></i>
     </span>
   </div>
 </template>
@@ -130,6 +130,13 @@ export default {
   //template: ``,
   methods: {
     /* 이벤트 핸들러 등록 + 일반 함수 */
+    addTodo(e) {
+      debugger;
+      console.log(e.target);
+
+      // 부모 컴포넌트에게 addTodo 이벤트 발생시킨다.
+      this.$emit('addTodo', e);
+    },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.
       namespaced: true를 설정한 경우 네임스페이스를 사용하기 때문에 store의 모듈 명을 적어주어야 합니다.

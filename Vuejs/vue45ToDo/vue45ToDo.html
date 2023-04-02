@@ -289,7 +289,10 @@
                 props: [],
                 methods: {
                   clearAll(e) {
-                    console.log(e.target);
+                      console.log(e.target);
+
+                      // 부모 컴포넌트에게 clearAll 이벤트 발생시킨다.
+                      this.$emit('clearAll', e);
                   }
                 }
               };
@@ -342,7 +345,11 @@
                     };
                 },
                 methods: {
-                    addTodo() {
+                    addTodo(e) {
+                      console.log(e.target);
+
+                      // 부모 컴포넌트에게 addTodo 이벤트 발생시킨다.
+                      this.$emit('addTodo', e);
                     }
                 }
             };
@@ -395,13 +402,17 @@
                     debugger;
                     console.log(done);
                   },
-                  doneToggle(id) {
+                  doneToggle(e) {
                     debugger;
                     console.log(id);
+                    // 부모 컴포넌트에게 doneToggle 이벤트 발생시킨다.
+                    this.$emit('removeTodo', e);
                   },
-                  removeTodo(id) {
+                  removeTodo(e) {
                     debugger;
                     console.log(id);
+                    // 부모 컴포넌트에게 doneToggle 이벤트 발생시킨다.
+                    this.$emit('doneToggle', e);
                   }
                 }
               };

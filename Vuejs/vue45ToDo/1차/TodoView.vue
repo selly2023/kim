@@ -18,12 +18,23 @@ button {
 <template>
     <div id="app">
         <!-- TodoHeader -->
+        <TodoHeader></TodoHeader>
 
         <!-- TodoInput -->
+        <TodoInput v-on:addTodo="addTodo">
+        </TodoInput>
 
         <!-- TodoList -->
+        <TodoList
+            v-bind:todoItems="todoItems"
+            v-on:doneToggle="doneToggle"
+            v-on:removeTodo="removeTodo"
+        >
+        </TodoList>
 
         <!-- TodoFooter -->
+        <TodoFooter v-on:clearAll="clearAll">
+        </TodoFooter>
     </div>
 </template>
 
