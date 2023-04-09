@@ -96,9 +96,27 @@ export default {
       console.log(e.targert, newTodoItem);
 
       // 2. id 값 만 있는 새로운 배열을 만든다. ==> map() 메서드 사용.
+      const ids = this.$data.todoItems.map((item) => {
+        // item === { id, todo, done}
+        return item.id;
+      });
+
       // 3. map() 메서드로 만들어진 새로운 배열에서 최대값을 찾는다.
-      // 4. 추가될 새로운 new id = max id + 1
-      
+      const maxid = ids.reduce((pvalue, cvalue) => {
+        if (pvalue > cvalue) return pvalue;
+        else return cvalue;
+      }, 0);
+
+      // 4. 추가될 새로운 todo 객체 만들기. newid = maxid + 1
+      const newTodo = {
+        id: maxid + 1,
+        todo: newTodoItem,
+        done: false,
+      };
+
+      // 5. todoItems 에 todo 객체 추가하기. push() 또는 spead 연산자 사용
+      // this.$data.todoItems.push(newTodo);
+      this.$data.todoItems = [...this.$data.todoItems, newTodo];
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.
