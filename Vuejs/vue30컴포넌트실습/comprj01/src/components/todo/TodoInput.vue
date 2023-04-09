@@ -109,7 +109,11 @@ input:focus {
 
 <template>
   <div class="inputBox shadow">
-    <input type="text" placeholder="Type what you have to do" />
+    <input
+      type="text"
+      placeholder="Type what you have to do"
+      v-model="newTodoItem"
+    />
     <span class="addContainer">
       <i aria-hidden="true" class="addBtn fas fa-plus" v-on:click="addTodo"></i>
     </span>
@@ -125,7 +129,9 @@ export default {
   props: [],
   data() {
     /* 컴포넌트 안에서 사용되는 변수 등록. 개별 변수 */
-    return {};
+    return {
+      newTodoItem: null,
+    };
   },
   //template: ``,
   methods: {
@@ -133,9 +139,19 @@ export default {
     addTodo(e) {
       debugger;
       console.log(e.target);
+      // 1. input 태그에 빈 문자열이 입력 되는 경우는 배열에 추가되지 않게.
+      // this.$data.newTodoItem !== null &&
+      // this.$data.newTodoItem !== undefined &&
+      // this.$data.newTodoItem !== '' &&
+      // this.$data.newTodoItem.trim() !== ''
+      if (this.$data.newTodoItem && this.$data.newTodoItem.trim()) {
+        // 부모 컴포넌트에게 addTodo 이벤트 발생시킨다.
+        this.$emit('addTodo', e, this.$data.newTodoItem);
 
-      // 부모 컴포넌트에게 addTodo 이벤트 발생시킨다.
-      this.$emit('addTodo', e);
+        // 5. add 후에 input 태그에 남아있는 입력값 지우기
+      } else {
+         // 할일을 입력하세요. 모달 출력
+      }
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.

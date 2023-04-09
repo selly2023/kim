@@ -61,10 +61,6 @@ export default {
       // todoItems = [];
       this.$data.todoItems = [];
     },
-    addTodo(e) {
-      debugger;
-      console.log(e);
-    },
     doneToggle(e) {
       debugger;
       console.log(e);
@@ -94,6 +90,15 @@ export default {
         return true; // 포함
       });
       this.$data.todoItems = newitems;
+    },
+    addTodo(e, newTodoItem) {
+      debugger;
+      console.log(e.targert, newTodoItem);
+
+      // 2. id 값 만 있는 새로운 배열을 만든다. ==> map() 메서드 사용.
+      // 3. map() 메서드로 만들어진 새로운 배열에서 최대값을 찾는다.
+      // 4. 추가될 새로운 new id = max id + 1
+      
     },
     /* vuex 를 사용하는 경우
       mapActions 는 store의 actions 를 가져오는 헬퍼 메서드입니다.
