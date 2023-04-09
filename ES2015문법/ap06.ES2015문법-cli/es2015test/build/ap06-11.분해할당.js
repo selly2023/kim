@@ -5,7 +5,6 @@
   배열 분해 할당은 배열의 순번을 이용해서 매핑한다.
   객체 분해 할당은 객체의 프로터티 명을 이용해서 매핑한다.
 */
-debugger;
 var points = [20, 30, 40];
 var x1 = points[0]; // 20
 var y1 = points[1]; // 30
@@ -49,3 +48,23 @@ var type = car.type,
   model = car.model,
   gear = car.gear;
 console.log(type, color, model, gear); // t, s, 2023,
+
+// 함수의 매개변수로 분해할당을 방식을 사용해 본다.
+// 함수의 매개변수에 분행할등 적용.
+// const { type, color } = car;
+var func2 = function func2(_ref) {
+  var type = _ref.type,
+    color = _ref.color;
+  // ES5
+  // const type = car.type;
+  // const color = car.color;
+
+  // ES2015, 분해할당
+  // const { type, color } = car;
+
+  debugger;
+  console.log(type, color); // t, s
+};
+
+debugger;
+func2(car);
