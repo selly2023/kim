@@ -44,5 +44,28 @@ console.log(rest); // ['화진포', '송지호', '청초호']
 
 const [city1, ...cityrest] = [...east, ...west];
 // ...cityrest: rest 연산자  , ...east, ...west  : spread 연산자
-console.log(cityrest ); // ["K", "T", "N", "C", "G"]
+console.log(cityrest); // ["K", "T", "N", "C", "G"]
 
+const moring = {
+  breacfast: '미역국',
+  lunuch: '삼치구이',
+};
+
+const dinner = '스테이크';
+
+const meals = {
+  ...moring,
+  dinner, // dinner: dinner,
+};
+console.log(meals); // meals 에 출력되는 값은 무엇인가?
+// { breacfast: '미역국', lunuch: '삼치구이', dinner: '스테이크' }
+
+debugger;
+// props 에 출력되는 값은 무엇인가?
+// ...props = ...message
+function childComponent(...props) {
+  // callee
+  console.log(props); // props 에 출력되는 값은 무엇인가?
+}
+const message = 'passed from Parent Component';
+childComponent(...message); // caller, [...]

@@ -18,10 +18,14 @@ console.log(aaa); // 변수의 사용 === 변수의 호이스팅
 
 var bbb = '변수의 호이스팅2';
 console.log(bbb);
+
+// 변수의 함수 스코프
 var msg = 'global scope';
 if (true) {
   var msg = 'block scope';
 }
+
+// 변수의 블락 스코프
 var msg2 = 'global scope';
 if (true) {
   var _msg = 'block scope';
