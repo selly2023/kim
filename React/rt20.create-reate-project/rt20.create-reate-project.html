@@ -42,10 +42,10 @@
         v16.18.1
 
         $ npm -v                           #  npm 버전 확인
-        9.4.2
+        9.5.0
 
         $ npx -v                           #  npx(=npm extension) 버전 확인
-        9.4.2
+        9.5.0
 
         $ npm install -g npm@latest        #  npm 최신 버전 설치
 
@@ -73,10 +73,12 @@
         ...
 
         $ ls               # reactprj01 폴더가 보이는지 확인
+        reactprj01/   rt20.create-reate-project.html
 
         $ cd reactprj01    # reactprj01 폴더로 이동
 
         $ ls               # package.json 파일이 보이는지 확인
+        node_modules/  package.json  package-lock.json public/  README.md  src/
 
         $ npm help
         $ npm help install
@@ -84,7 +86,7 @@
 
         $ npm help ls
         $ npm ls -h
-        $ npm ls react       # 설치된 react 버전 확인
+        $ npm ls react       # 설치된 react 버전 및 의존 관계 확인
         ├─┬ @testing-library/react@13.4.0
         │ └── react@18.2.0 deduped
         ├─┬ react-dom@18.2.0
@@ -100,13 +102,14 @@
         모든 OS 에 동일
 
 
-    step 1-04. 프로젝트 소스 커밋
+    step 1-04. 프로젝트 소스 커밋 및 푸시
         $ pwd           # 현재 작업하는 폴더 위치 확인
         $ ls            # package.json 파일이 보이는지 확인
         $ git status    # 파일의 추가, 변경, 삭제 확인
         $ git add -AN   # 신규 파일 추가
         $ git status    # 파일의 추가, 변경, 삭제 확인
-        $ git commit -a -m '프로젝트 시작하기'      # 파일 commit
+        $ git commit -a -m '프로젝트 시작'      # 파일 commit
+        $ git status    # 파일의 추가, 변경, 삭제 확인
         $ git push      #
 
         github 사이트에서 소스가 올라갔는지 확인한다.
@@ -126,7 +129,7 @@
 
     step 1-22. styled-components(필수)
         styled-components 는 CSS 표기법을 사용하여
-        컴포넌트안에서 인라인 스타일링을 만들 수 있게 해주는 CSS-IN-JS 라이브러리.
+        컴포넌트안에서 CSS 스타일링을 만들 수 있게 해주는 라이브러리(CSS-IN-JS).
         https://www.npmjs.com/package/styled-components
 
         $ npm install --save styled-components @types/styled-components
@@ -207,6 +210,10 @@
     step 1-35. install the Bootstrap 4
         $ npm install --save bootstrap reactstrap
 
+
+    @@@@@@@@@@@@@@@@@@@@@@@@@
+    @ 라이브러리 재설치
+    @@@@@@@@@@@@@@@@@@@@@@@@@
 
     step 1-41. package.json 에 있는 라이브러리 재설치
     $ npm install
@@ -320,6 +327,7 @@
         $ pwd     # 현재 작업하는 폴더 위치 확인
         $ ls -a   # package.json 파일이 보이는지 확인
         $ touch .env    # .env 파일 생성
+        $ ls -a   # .env 파일이 보이는지 확인
         $ echo -e "SKIP_PREFLIGHT_CHECK=true \nPORT=15109" > .env
         $ cat .env
 
@@ -338,9 +346,10 @@
             . 들여쓰기에 tab을 쓸 것인가? space를 쓸 것인가?
             . 문자 리터럴로  ' 를 쓸 것인가? " 쓸 것인가?
 
-        Prettier 는 소스 코드를 저장할 때나
-                   git 커밋할 때
-                   정의된 규칙에 따라 코드의 형식을 자동으로 수정한다.
+        Prettier 가 적용되는 시점은
+            . 소스 코드를 저장할 때나
+            . git 커밋할 때
+        정의된 규칙에 따라 코드의 형식을 자동으로 수정한다.
 
         prettier : Prettier 모듈
         eslint-config-react: react 프로젝트에 맞춰진 ESLint 규칙을 추가합니다.
@@ -410,26 +419,25 @@
               > JavaScript modules (import/export)
                 CommonJS (require/exports)
                 None of these
-              ? Which framework does your project use? ...
-              > React
-                Vue.js
-                None of these
+            ? Which framework does your project use? ...
+            > React
+              Vue.js
+              None of these
             ? Does your project use TypeScript?
               > No
                 Yes
             ? Where does your code run? ...  (Press <space> to select, <a> to toggle all, <i> to invert selection)
               > Browser
                 Node
-            ? How would you like to define a style for your project? ...
-              > Use a popular style guide
-                Answer questions about your style
             ? What format do you want your config file to be in? ...
               > JavaScript
                 YAML
                 JSON
+
             ? Would you like to install them now?
                 No
               > Yes
+
             ? Which package manager do you want to use? ...
               > npm
                 yarn
@@ -559,14 +567,14 @@
 
 
     4-7. commit 전에 자동으로 prettier 적용하기
-        githook은 git 에 특정 이벤트(커밋, 푸시 등)를 감지하여
+        githook 은 git 에 특정 이벤트(커밋, 푸시 등)를 감지하여
         이벤트를 실행하기 전에 특정 동작을 수행할 수 있도록 도와주는 플러그인 입니다.
 
         husky와 lint-staged의 역할은 다음과 같다.
         . husky: packages.json 파일에서 githook를 사용할 수 있게 해준다.
         . lint-staged: git 의 stage된 파일들에 특정 동작을 수행할 수 있도록 해준다.
 
-        lint-staged와 husky를 사용하여 git 이벤트에 Prettier 명령어를 연동 설정.
+        lint-staged 와 husky를 사용하여 git 이벤트에 Prettier 명령어를 연동 설정.
 
         githook 관련 플러그인 설치하기
         $ npm install --save-dev  husky  lint-staged
@@ -693,7 +701,7 @@
     ##################################
 
         6-1. 터미널에서 실행중인 서버 중지
-        서버 중지하려면 "ctrl + c" 눌러 프로세스 강제 종료
+        실행중신 서버가 있다면 "ctrl + c" 눌러 프로세스 강제 종료
 
         6-2. 서버 시작
         $ ls                # package.json 파일이 보이는지 확인
@@ -701,7 +709,7 @@
 
         Compiled successfully!
 
-        You can now view counterprj06 in the browser.
+        You can now view reactprj01 in the browser.
 
           Local:            http://localhost:15109
           On Your Network:  http://192.168.56.1:15109
