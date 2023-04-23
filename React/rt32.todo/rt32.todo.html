@@ -682,11 +682,10 @@
           );
         });
 
-    step 26-02. TodoList 에 handlerDoneToggle 작성
+    step 26-02. TodoList 에 handlerDoneToggle 이벤트 핸들러 작성
 
         const handlerDoneToggle = (e) => {
             // click 이벤트 취소. 버블링 방지
-            //
             const id = Number(e.target.dataset.id);  // data-id. Number() : 문자열을 숫자로 변환
             const item = JSON.parse(e.target.dataset.item);  // data-item
 
@@ -725,7 +724,6 @@
         const callbackDoneToggle = useCallback(
             (id) => {
                 // state 변경 코드를 완성하시오.
-
                 const newTodos =
                     todoItems &&
                     todoItems.map((item) => {
