@@ -742,7 +742,7 @@
     ##################################
     step 27. TodoList 의 removeTodo 기능 완성한다.
         이벤트 핸들러로 인자를 넘길 때 이벤트 핸들러의 매개변수로 넘기는 방법을 적용하여 본다.
-        소요시간: 10분
+        소요시간: 0분
     ##################################
 
     step 27-01. TodoList 의 JSX에 RemoveTodo onClick 설정한다.
@@ -770,7 +770,15 @@
             callbackRemoveTodo(id);
         };
 
-    step 27-03. TodoList 컴포넌트에 props 설정
+    step 27-03. TodoContainer 컴포넌트 JSX에 callbackRemoveTodo props 내림 설정
+        <TodoList
+            todoItems={todoItems}
+            callbackDoneToggle={callbackDoneToggle}
+            callbackRemoveTodo={callbackRemoveTodo}
+        >
+        </TodoList>
+
+    step 27-04. TodoList 컴포넌트에 props 설정
         TodoList.propTypes 수정
         TodoList.defaultProps 수정
 
@@ -792,14 +800,6 @@
           callbackDoneToggle: () => {},
           callbackRemoveTodo:() => {},
         };
-
-    step 27-04. TodoContainer 컴포넌트 JSX에 callbackRemoveTodo props 내림 설정
-        <TodoList
-            todoItems={todoItems}
-            callbackDoneToggle={callbackDoneToggle}
-            callbackRemoveTodo={callbackRemoveTodo}
-        >
-        </TodoList>
 
     step 27-05. TodoContainer 컴포넌트에 callbackRemoveTodo 메서드 작성
         const callbackRemoveTodo = useCallback(
@@ -946,6 +946,22 @@
 
     step 28-14. TodoInput 컴포넌트 handlerAddTodo 메서드 작성
         cosnt handlerAddTodo = (e) => {
+            // 작업할 내용을
+            // click 이벤트 취소. 버블링 방지
+
+            // input 에 입력된 값을 가져오기. 어떻게 해야 하나? ==> ref이름.current.속성명
+            // value 속성값 가져오기: ref이름.current.value
+            // class 속성값 가져오기: ref이름.current.className
+            
+            // input 태그 입력값 유효성 검사
+            // input 태그에 빈 문자열이나 공백이 입력 되는 경우는 modal 창이 출력되게 하시오
+
+            // TodoContainer 의 callbackAddTodo 메서드 호출 기능 추가
+
+            // add 후에 input 태그의 입력 값 지우기.
+            // input 의 value 속성에 값을 설정하기. 어떻게 해야 하나? ==> ref이름.current.속성명
+            // value 속성값 가져오기: ref이름.current.value
+            
 
             // click 이벤트 취소. 버블링 방지
             e.stopPropagation();
