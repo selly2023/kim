@@ -23,8 +23,12 @@ const StyledCrudContainer = styled.div`
 // const {...props} = props;
 function CrudContainer({ ...props }) {
   // useState 를 사용한 컴포넌트의 상태값 설정
-  const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
-  const [state, setState] = useState({ id: 0, name: '', age: 0 }); // 상태값이 참조타입 경우
+  const [items, setItems] = useState([
+    { id: 1, name: '슈퍼맨', power: 100 },
+    { id: 2, name: '아쿠아맨', power: 300 },
+    { id: 3, name: '스파이더맨', power: 500 },
+    { id: 4, name: '배트맨', power: 30 },
+  ]); // 상태값이 기본타입인 경우
 
   // ref 만들기.
   // const refInput = useRef();
@@ -51,105 +55,150 @@ function CrudContainer({ ...props }) {
     ],
   );
 
-  // callback 메서드 작성. callback 메서드는 부모의 공유 상태값을 변경하기 위해서 사용된다.
-  const callback = useCallback(
+  // items 배열에서 삭제하는 콜백 메서드 만들기. Array.filter() 를 사용한다
+  const callbackDel = useCallback(
     (param) => {
       // state 변경
+      const deleteid = param.id;
+      // 배열 복제==> 새로운 배열 만들기
+      const newitems = items.filter((item) => {
+        if (item.id === deleteid) return false;
+        else return true;
+      });
+
+      debugger;
+      // 배열 할당
+      setItems(newitems);
+    },
+    [
+      /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */
+      items,
+    ],
+  );
+
+  // power를 100씩 증가 시키는 콜백 메서드 만들기. Array.map() 을 사용한다
+  const callbackUp = useCallback(
+    (param) => {
+      // state 변경
+      // item.power = item.power + 100;
+      // 처리방식: 복제 후 할당
+
+      const modid = param.id;
+      // 배열 복제==> 새로운 배열 만들기
+      const newitems = items.map((item) => {
+        if (item.id === modid) {
+          item.power = item.power + 100;
+        }
+        return item;
+      });
+
+      debugger;
+      // 배열 할당
+      setItems(newitems);
+    },
+    [
+      /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */
+      items,
+    ],
+  );
+
+  // power를 50씩 감소 시키는 콜백 메서드 만들기. Array.map() 을 사용한다
+  const callbackDown = useCallback(
+    (param) => {
+      // state 변경
+      // item.power = item.power - 50;
+      // 처리방식: 복제 후 할당
+
+      const modid = param.id;
+      // 배열 복제==> 새로운 배열 만들기
+      const newitems = items.map((item) => {
+        if (item.id === modid) {
+          item.power = item.power - 50;
+        }
+        return item;
+      });
+
+      debugger;
+      // 배열 할당
+      setItems(newitems);
+    },
+    [
+      /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */
+      items,
+    ],
+  );
+
+  // newitem 으로 수정하는 콜백 메서드 만들기. Array.map() 을 사용한다
+  const callbackSave = useCallback(
+    (newitem) => {
+      // state 변경
+      // 배열 복제==> 새로운 배열 만들기
+      const newitems = items.map((item) => {
+        if (item.id === newitem.id) {
+          return newitem;
+        }
+        return item;
+      });
+
+      debugger;
+      // 배열 할당
+      setItems(newitems);
     },
     [
       /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */
     ],
   );
 
-  // 이벤트 핸들러 작성.
-  const handler = (e) => {
-    // 이벤트 핸들러는 화살표 함수로 만든다
-    console.log(e.target);
-  };
+  // newitem 을 추가하는 콜백 메서드 만들기.
+  const callbackAdd = useCallback(
+    (newitem) => {
+      // state 변경
+      debugger;
+      // items에서 최대 id 값을 구하는 방법.
+      // 방법1. items.map()과 items.reduce()를 사용하여 max id를 구하시오.
+      // const ids = items.map((item) => item.id); // [1,2,3,4]
+      // const maxid = ids.reduce(
+      //   (pvalue, cvalue) => (pvalue > cvalue ? pvalue : cvalue),
+      //   0,
+      // );
+      const maxid = items
+        .map((item) => item.id)
+        .reduce((pvalue, cvalue) => (pvalue > cvalue ? pvalue : cvalue), 0);
+
+      const newid = maxid + 1;
+
+      // newitem 에  id 프러퍼티 추가
+      newitem.id = newid;
+
+      // items 에 추가하시오
+      // items.push(newitem);
+      setItems([...items, newitem]);
+    },
+    [
+      /* 연관배열: 콜백 메서드에서 변경하고자 하는 연관되는 상태(변수)명들을 기술 */
+      items,
+    ],
+  );
 
   // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
   return (
     <StyledCrudContainer>
       <div id="app">
         <h1>Creat Read Update Delete</h1>
-        <div>
-          <div>
-            <label htmlFor="">Name : </label>
-            <input type="text" name="name" placeholder="이름을 입력하세요" />
-          </div>
-          <div>
-            <label htmlFor="">Power : </label>
-            <input type="number" name="power" placeholder="숫자를 입력하세요" />
-          </div>
-          <button type="button">Add</button>
-        </div>
+        <CrudInput callbackAdd={callbackAdd}></CrudInput>
         <hr />
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>NAME</th>
-              <th>POWER</th>
-              <th>CRUD</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="">
-              <td>1</td>
-              <td>슈퍼맨</td>
-              <td>100</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-            <tr className="strong">
-              <td>2</td>
-              <td>아쿠아맨</td>
-              <td>300</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-            <tr className="strong">
-              <td>3</td>
-              <td>스파이더맨</td>
-              <td>500</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-            <tr className="strong">
-              <td>4</td>
-              <td>배트맨</td>
-              <td>30</td>
-              <td>
-                <button type="button">Del</button>
-                <button type="button">Power Up</button>
-                <button type="button">Power Down</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <CrudList
+          items={items}
+          callbackDel={callbackDel}
+          callbackUp={callbackUp}
+          callbackDown={callbackDown}
+          callbackSave={callbackSave}
+        ></CrudList>
       </div>
     </StyledCrudContainer>
   );
 }
 
-CrudContainer.propTypes = {
-  // props의 프로퍼티 타입 설정. https://ko.reactjs.org/docs/typechecking-with-proptypes.html
-  // 인자명: PropTypes.func.isRequired,
-  // 인자명: PropTypes.arrayOf(PropTypes.object),
-};
 CrudContainer.defaultProps = {
   // props의 디폴트 값 설정. https://ko.reactjs.org/docs/typechecking-with-proptypes.html
   // 인자명: () => {},

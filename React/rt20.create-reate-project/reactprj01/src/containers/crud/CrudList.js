@@ -21,13 +21,20 @@ import {
   useHistory,
   useNavigate,
 } from 'react-router-dom';
+import CrudListItem from './CrudListItem';
 
-const StyledCrudList = styled.div`
+const StyledCrudList = styled.table`
   /* styled 설정. https://styled-components.com/docs/basics#adapting-based-on-props */
 `;
 
-// const {...props} = props;
-function CrudList({ ...props }) {
+// const {items} = props;
+function CrudList({
+  items,
+  callbackDel,
+  callbackUp,
+  callbackDown,
+  callbackSave,
+}) {
   // useState 를 사용한 컴포넌트의 상태값 설정
   const [변수명, set변수명] = useState('기본값'); // 상태값이 기본타입인 경우
   const [state, setState] = useState({ id: 0, name: '', age: 0 }); // 상태값이 참조타입 경우
@@ -80,9 +87,33 @@ function CrudList({ ...props }) {
   };
 
   // JSX로 화면 만들기. 조건부 렌더링: https://ko.reactjs.org/docs/conditional-rendering.html
+  const arrs =
+    items &&
+    items.length > 0 &&
+    items.map((item) => {
+      return (
+        <CrudListItem
+          key={item.id}
+          item={item}
+          callbackDel={callbackDel}
+          callbackUp={callbackUp}
+          callbackDown={callbackDown}
+          callbackSave={callbackSave}
+        ></CrudListItem>
+      );
+    });
+
   return (
     <StyledCrudList>
-      <div>CrudList</div>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>NAME</th>
+          <th>POWER</th>
+          <th>CRUD</th>
+        </tr>
+      </thead>
+      <tbody>{arrs}</tbody>
     </StyledCrudList>
   );
 }
@@ -91,11 +122,21 @@ CrudList.propTypes = {
   // props의 프로퍼티 타입 설정. https://ko.reactjs.org/docs/typechecking-with-proptypes.html
   // 인자명: PropTypes.func.isRequired,
   // 인자명: PropTypes.arrayOf(PropTypes.object),
+  items: PropTypes.arrayOf(PropTypes.object),
+  callbackDel: PropTypes.func.isRequired,
+  callbackUp: PropTypes.func.isRequired,
+  callbackDown: PropTypes.func.isRequired,
+  callbackSave: PropTypes.func.isRequired,
 };
 CrudList.defaultProps = {
   // props의 디폴트 값 설정. https://ko.reactjs.org/docs/typechecking-with-proptypes.html
   // 인자명: () => {},
   // 인자명: [],
+  items: [],
+  callbackDel: () => {},
+  callbackUp: () => {},
+  callbackDown: () => {},
+  callbackSave: () => {},
 };
 
 export default CrudList; // React.memo(CrudList); // React.memo()는 props 미변경시 컴포넌트 리렌더링 방지 설정
