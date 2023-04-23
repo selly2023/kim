@@ -154,6 +154,7 @@
     $ mkdir -p ./src/containers/todo
     $ touch ./src/containers/todo/TodoContainer.js
     $ ls ./src/containers/todo/  # 생성된 파일 목록 확인
+    TodoContainer.js
 
     $ mkdir ./src/containers/todo/components
     $ touch ./src/containers/todo/components/TodoHeader.js  \
@@ -161,6 +162,7 @@
             ./src/containers/todo/components/TodoList.js  \
             ./src/containers/todo/components/TodoFooter.js
     $ ls ./src/containers/todo/components/   # 생성된 파일 목록 확인
+    TodoFooter.js TodoHeader.js TodoInput.js TodoList.js
 
 
     12-2. 사용하지 않는 파일 삭제
@@ -217,9 +219,9 @@
 
         function App() {
             return (
-                <StyledPageHome>
+                <div>
                     <PageHome />
-                </StyledPageHome>
+                </div>
             );
         }
 
@@ -255,7 +257,7 @@
         </StyledPageHome>
 
     13-8. PageHome 에 라우팅 설정
-    
+
     13-8. PageHome 에 링크 설정
         작업파일: src/pages/PageHome.js
 
@@ -347,7 +349,7 @@
     step 21-6. TodoContainer 의 JSX 에서 modal 창 숨기기 기능 추가하기
         변경 전: <div class="modal-mask">
         변경 후: <div class="modal-mask" style={{ display: 'none' }}>
-        
+
         css 를 javascript 로 바꾸는 변환 규칙
           1. 대문자 로 바꾼다.명칭은 카멜 표기법 사용. 왜냐하면 자바스립트이기 때문.
               예시) 대시 표기법(CSS) ==> 카멜 표기법(JS)
@@ -407,7 +409,7 @@
         const StyledTodoHeader = styled.div`
           ... 중략
         `;
-        
+
         수정 후
         const StyledTodoHeader = styled.header`
           ... 중략
@@ -461,7 +463,7 @@
 
     step 24-05. TodoFooter 컴포넌트 스타일링하기
         TodoContainer 에서 TodoFooter 로 스타일 옮기기
-        
+
         const StyledTodoFooter = styled.div`
           ... 중략
         `;
@@ -491,7 +493,7 @@
         const handlerClearAll = () => {
             console.log(e.target);
             debugger;
-            
+
             // 부모 컴포넌트의 콜백 메서드 callbackClearAll 호출.
             callbackClearAll();
         };
@@ -499,7 +501,7 @@
     step 24-09. TodoFooter 에 props 설정
         TodoFooter.propTypes 수정
         TodoFooter.defaultProps 수정
-        
+
         function TodoFooter({
           callbackClearAll
         }) {
@@ -618,7 +620,7 @@
     step 25-08. TodoList 에 props 설정
         TodoList.propTypes 수정
         TodoList.defaultProps 수정
-        
+
         function TodoList({
           todoItems
         }) {
@@ -633,7 +635,7 @@
 
     step 25-09. TodoList 컴포넌트 에서 map 을 사용하여 JSX 반복문 코드를 작성하시오.
         const lis = todoItems &&
-            todoItems.length > 0 && 
+            todoItems.length > 0 &&
             todoItems.map((item) => {
             return (
                 <li key={item.id} className={item.done ? 'checked' : null}>
@@ -699,7 +701,7 @@
     step 26-03. TodoList 컴포넌트에 props 설정
         TodoList.propTypes 수정
         TodoList.defaultProps 수정
-        
+
         function TodoList({
           todoItems,
           callbackDoneToggle
@@ -753,7 +755,7 @@
                 className="removeBtn"
                 onClick={(e) => {
                     e.stopPropagation(); // 이벤트 취소. 버블링 방지
-                    
+
                     // 부모 컴포넌트의 콜백 메서드 handlerRemoveTodo 호출
                     handlerRemoveTodo(e, item.id);
                 }}
@@ -767,7 +769,7 @@
         const handlerRemoveTodo = (e, id) => {
             // 이벤트 핸들러는 화살표 함수로 만든다
             console.log(e.target);
-            
+
             // 부모 컴포넌트의 콜백 메서드 callbackRemoveTodo 호출
             callbackRemoveTodo(id);
         };
@@ -775,7 +777,7 @@
     step 27-03. TodoList 컴포넌트에 props 설정
         TodoList.propTypes 수정
         TodoList.defaultProps 수정
-        
+
         function TodoList({
           todoItems,
           callbackDoneToggle,
@@ -783,7 +785,7 @@
         }) {
           ... 이하 중략
         }
-        
+
         TodoList.propTypes = {
           todoItems: PropTypes.arrayOf(PropTypes.object),
           callbackDoneToggle: PropTypes.func.isRequired,
@@ -977,7 +979,7 @@
     step 28-15. TodoInput 컴포넌트에 props 설정
         TodoInput.propTypes 수정
         TodoInput.defaultProps 수정
-        
+
         function TodoInput({
           callbackAddTodo
         }) {
